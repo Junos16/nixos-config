@@ -3,7 +3,7 @@
 let
   colors = {
     bg = "#0a0e1a";
-    bg-transparent = "rgba(10, 14, 26, 0.85)";
+    bg-transparent = "rgba(10, 14, 26, 0.6)";
     fg = "#e6e1cf";
     primary = "#00d4ff";
     secondary = "#ff0080";
@@ -88,91 +88,91 @@ in
       };
     };
     
-    style = ''
-      * {
-          border: none;
-          border-radius: 0;
-          font-family: "JetBrainsMono Nerd Font";
-          font-weight: bold;
-          font-size: 13px;
-          min-height: 0;
-      }
-      
-      window#waybar {
-          background: ${colors.bg-transparent};
-          backdrop-filter: blur(10px);
-          color: ${colors.fg};
-          border-bottom: 2px solid ${colors.primary};
-      }
-      
-      #workspaces {
-          margin: 0 4px;
-      }
-      
-      #workspaces button {
-          padding: 0 8px;
-          background: transparent;
-          color: ${colors.fg};
-          border: 2px solid transparent;
-          border-radius: 8px;
-          margin: 0 2px;
-          transition: all 0.3s ease;
-      }
-      
-      #workspaces button:hover {
-          background: ${colors.surface-transparent};
-          border-color: ${colors.accent};
-          box-shadow: 0 0 10px ${colors.accent}40;
-      }
-      
-      #workspaces button.active {
-          background: ${colors.primary}20;
-          border-color: ${colors.primary};
-          color: ${colors.primary};
-          box-shadow: 0 0 15px ${colors.primary}60;
-      }
-      
-      #window, #clock, #battery, #network, #wireplumber, #tray {
-          padding: 0 10px;
-          margin: 0 2px;
-          background: ${colors.surface-transparent};
-          border-radius: 8px;
-          border: 1px solid ${colors.primary}40;
-      }
-      
-      #clock {
-          color: ${colors.accent};
-          font-weight: bold;
-          text-shadow: 0 0 5px ${colors.accent}80;
-      }
-      
-      #battery.charging {
-          color: ${colors.accent};
-          background: ${colors.accent}10;
-      }
-      
-      #battery.warning:not(.charging) {
-          color: ${colors.warning};
-          background: ${colors.warning}10;
-      }
-      
-      #battery.critical:not(.charging) {
-          color: ${colors.error};
-          background: ${colors.error}10;
-          animation: blink 0.5s linear infinite alternate;
-      }
-      
-      @keyframes blink {
-          to { background-color: ${colors.error}30; }
-      }
-      
-      #network.disconnected {
-          color: ${colors.error};
-      }
-      
-      #wireplumber.muted {
-          color: ${colors.error};
-      }
-    '';
+  style = ''
+    * {
+        border: none;
+        border-radius: 0;
+        font-family: "JetBrainsMono Nerd Font";
+        font-weight: bold;
+        font-size: 13px;
+        min-height: 0;
+    }
+  
+    window#waybar {
+        background: rgba(10, 14, 26, 0.6);
+        color: #e6e1cf;
+        border-bottom: 2px solid #00d4ff;
+    }
+  
+    #workspaces {
+        margin: 0 4px;
+    }
+  
+    #workspaces button {
+        padding: 0 8px;
+        background: transparent;
+        color: #e6e1cf;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        margin: 0 2px;
+        transition: all 0.3s ease;
+    }
+  
+    #workspaces button:hover {
+        background: rgba(26, 31, 46, 0.9);
+        border-color: #39ff14;
+        box-shadow: 0 0 10px rgba(57, 255, 20, 0.25);
+    }
+  
+    #workspaces button.active {
+        background: rgba(0, 212, 255, 0.125);
+        border-color: #00d4ff;
+        color: #00d4ff;
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.375);
+    }
+  
+    #window, #clock, #battery, #network, #wireplumber, #tray {
+        padding: 0 10px;
+        margin: 0 2px;
+        background: rgba(26, 31, 46, 0.9);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 212, 255, 0.25);
+    }
+  
+    #clock {
+        color: #39ff14;
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+    }
+  
+    #battery.charging {
+        color: #39ff14;
+        background: rgba(57, 255, 20, 0.1);
+    }
+  
+    #battery.warning:not(.charging) {
+        color: #ff6600;
+        background: rgba(255, 102, 0, 0.1);
+    }
+  
+    #battery.critical:not(.charging) {
+        color: #ff0040;
+        background: rgba(255, 0, 64, 0.1);
+        animation: blink 0.5s linear infinite alternate;
+    }
+  
+    @keyframes blink {
+        to { background-color: rgba(255, 0, 64, 0.2); }
+    }
+  
+    #network.disconnected {
+        color: #ff0040;
+    }
+  
+    #wireplumber.muted {
+        color: #ff0040;
+    }
+  '';
+  
   };
 }

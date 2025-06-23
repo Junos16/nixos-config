@@ -112,20 +112,20 @@ in
     initExtra = ''
       if [[ -n "$WAYLAND_DISPLAY" ]]; then
         alias phcopy='wl-copy'
-	alias pbpaste='wl-paste'
+      	alias pbpaste='wl-paste'
 
-	autoload -Uz bracketed-paste-magic
-	zle -N bracketed-paste bracketed-paste-magic
+	      autoload -Uz bracketed-paste-magic
+	      zle -N bracketed-paste bracketed-paste-magic
 
-	paste-from-clipboard() {
-	  local content=$(wl-paste 2>/dev/null)
-	  if [[ -n "$content" ]]; then
-	    LBUFFER="$LBUFFER$content"
-	  fi
-	}
+	      paste-from-clipboard() {
+	        local content=$(wl-paste 2>/dev/null)
+	        if [[ -n "$content" ]]; then
+	          LBUFFER="$LBUFFER$content"
+	        fi
+	      }
 
-	zle -N paste-from-clipboard
-	bindkey '^V' paste-from-clipboard
+	      zle -N paste-from-clipboard
+	      bindkey '^V' paste-from-clipboard
       fi
     '';  
     
@@ -191,6 +191,7 @@ in
     wl-clipboard
     clipman
     cliphist
+    waybar
     
     # Communication
     discord
@@ -221,7 +222,7 @@ in
       package = pkgs.adwaita-icon-theme;
     };
   };
-
+  
   # Qt theme
   qt = {
     enable = true;

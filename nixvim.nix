@@ -41,25 +41,6 @@
     };
 
     clipboard.providers.wl-copy.enable = true;	
-
-    # extraConfigLua = ''
-    #   vim.opt.clipboard = "unnamedplus"
-    #   if vim.fn.executable('wl-copy') == 1 and vim.fn.executable('wl-paste') == 1 then
-    #     vim.g.clipboard = {
-    #       name = 'wl-copy',
-    #  	    copy = {
-    #  	      ['+'] = 'wl-copy --type text/plain',
-    #         ['*'] = 'wl-copy --type text/plain --primary',
-    #       },
-    #       paste = {
-    #         ['+'] = 'wl-paste --no-newline',
-    #         ['*'] = 'wl-paste --no-newline --primary',
-    # 	    },
-    #       cache_enabled = 1,
-    #     }  
-    #   end
-    # '';
-    
     globals.mapleader = " ";
     
     keymaps = [

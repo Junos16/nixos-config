@@ -4,11 +4,11 @@
   # Hyprpaper configuration
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     # Preload wallpapers
-    preload = ~/.config/wallpapers/cyberpunk.jpg
-    preload = ~/.config/wallpapers/cyberpunk_alt.jpg
+    preload = /home/hriddhit/Downloads/wallpaper-bluegreen.jpg
+    #preload = ~/.config/wallpapers/cyberpunk_alt.jpg
     
     # Set wallpaper for each monitor
-    wallpaper = ,~/.config/wallpapers/cyberpunk.jpg
+    wallpaper = ,/home/hriddhit/Downloads/wallpaper-bluegreen.jpg
     
     # Enable splash text
     splash = true
@@ -24,11 +24,11 @@
   # };
 
   # Alternative: Create a simple solid color wallpaper using imagemagick
-  home.activation.createWallpaper = ''
-    if [ ! -f ~/.config/wallpapers/cyberpunk.jpg ]; then
-      mkdir -p ~/.config/wallpapers
-      ${pkgs.imagemagick}/bin/convert -size 1920x1080 gradient:"#0a0e1a-#1a1f2e" ~/.config/wallpapers/cyberpunk.jpg
-      ${pkgs.imagemagick}/bin/convert -size 1920x1080 gradient:"#0f1419-#00d4ff" ~/.config/wallpapers/cyberpunk_alt.jpg
-    fi
-  '';
+  # home.activation.createWallpaper = ''
+  #   if [ ! -f ~/.config/wallpapers/cyberpunk.jpg ]; then
+  #     mkdir -p ~/.config/wallpapers
+  #     ${pkgs.imagemagick}/bin/convert -size 1920x1080 gradient:"#0a0e1a-#1a1f2e" ~/.config/wallpapers/cyberpunk.jpg
+  #     ${pkgs.imagemagick}/bin/convert -size 1920x1080 gradient:"#0f1419-#00d4ff" ~/.config/wallpapers/cyberpunk_alt.jpg
+  #   fi
+  # '';
 }

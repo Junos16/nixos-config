@@ -19,8 +19,8 @@ in
       env = [
         "CLUTTER_BACKEND,wayland"
         "GDK_QPA_PLATFORM,wayland;xcb"
-	"SDL_VIDEODRIVER,wayland"
-	"XDG_SESSION_TYPE,wayland"
+	      "SDL_VIDEODRIVER,wayland"
+	      "XDG_SESSION_TYPE,wayland"
       ];
 
       input = {
@@ -49,13 +49,14 @@ in
           new_optimizations = true;
           xray = true;
         };
-	shadow = {
-	  enabled = true;
-	  range = 20;
-	  render_power = 3;
-	  color = "rgba(00d4ff40)";
-	  color_inactive = "rgba(0a0e1a40)";
-	};
+     	
+        shadow = {
+    	    enabled = true;
+	        range = 20;
+    	    render_power = 3;
+    	    color = "rgba(00d4ff40)";
+    	    color_inactive = "rgba(0a0e1a40)";
+    	  };
       };
       
       animations = {
@@ -147,8 +148,8 @@ in
         "waybar"
         "hyprpaper"
         "dunst"
-	"wl-paste --watch cliphist store"
-	# "sleep 2 && waybar"
+	      "wl-paste --watch cliphist store"
+	      # "sleep 2 && waybar"
       ];
       
       # Window rules for transparency
