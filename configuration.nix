@@ -15,6 +15,7 @@
   boot.extraModprobeConfig = ''
     options iwlwifi power_save=0
   '';
+  boot.supportedFilesystems = [ "ntfs" ];
 
   boot.kernelParams = [
     "pcie_aspm=off"
@@ -201,7 +202,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     vim
     git
@@ -211,6 +211,7 @@
     # greetd.tuigreet
     polkit_gnome
     imagemagick
+    ntfs3g
     # systemd
     # dbus
   ];
