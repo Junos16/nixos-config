@@ -181,16 +181,6 @@
   services = {
     dbus.enable = true;
     udisks2.enable = true;
-    udev = {
-      enable = true;
-      extraRules = ''  
-        # Auto-mount USB drives
-        KERNEL=="sd[a-z]*", SUBSYSTEMS=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemd-run --property=Type=oneshot --property=RemainAfterExit=yes --property=ExecStop='${pkgs.util-linux}/bin/umount /mnt/%k' ${pkgs.util-linux}/bin/mkdir -p /mnt/%k && ${pkgs.util-linux}/bin/mount /dev/%k /mnt/%k"
-  
-        # Auto-unmount USB drives on removal
-        KERNEL=="sd[a-z]*", SUBSYSTEMS=="usb", ACTION=="remove", RUN+="${pkgs.systemd}/bin/systemd-run --property=Type=oneshot ${pkgs.util-linux}/bin/umount /mnt/%k && ${pkgs.util-linux}/bin/rmdir /mnt/%k"
-      '';
-    };
     devmon.enable = true;
     gvfs.enable = true;
   };
@@ -227,11 +217,12 @@
     polkit_gnome
     imagemagick
     ntfs3g
+    libnotify
     # systemd
     # dbus
   ];
 
-  # Environment variables for better Wayland support
+  # Environment variables 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
@@ -242,7 +233,6 @@
     XDG_SESSION_TYPE = "wayland";
   };
   
-  # Enable dconf for GTK applications
   programs.dconf.enable = true;
 
   # XDG Desktop Portal

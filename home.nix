@@ -24,6 +24,7 @@ in
     ./wofi.nix
     ./dunst.nix
     ./hyprpaper.nix
+    ./zathura.nix
   ];
 
   home.stateVersion = "25.05";
@@ -98,19 +99,38 @@ in
     syntaxHighlighting.enable = true;
     
     shellAliases = {
+      # Files and Folders
       ls = "eza";
       tree = "eza --tree";
       ll = "eza -l";
       la = "eza -la";
+      lsusb = "lsusb";
+      lsmnt = "findmnt";
+
+      # NixOS
       rebuild = "sudo nixos-rebuild switch --flake .#hriddhit";
       update = "nix flake update";
+
       vim = "nvim";
       cat = "bat";
+
+      # TMUX
       tm = "tmux";
       ta = "tmux attach";
       tl = "tmux list-sessions";
-      lsusb = "lsusb";
-      lsmnt = "findmnt";
+      
+      # Latex
+      ltxmk = "latexmk -pdf -synctex=1 -interaction=nonstopmode";
+      ltxclean = "latexmk -C";
+      ltxw = "latexmk -pdf -pvc -synctex=1 -interaction=nonstopmode";
+  
+      # Typst
+      typstw = "typst watch";
+      typstc = "typst compile";
+
+      # Bib-Tex
+      bibclean = "biber --tool --output-align --output-indent=2";
+      bibvalidate = "biber --tool --validate-datamodel";
     };
 
     initExtra = ''
@@ -167,14 +187,23 @@ in
     ripgrep
     bat
     eza
+    udiskie
     
     # File manager
-    stable.yazi
+    yazi
     
     # Media
-    stable.mpv
+    mpv
     pavucontrol
-    
+
+    # Documents/Academic
+    zathura
+    poppler_utils
+    pandoc
+    texliveFull
+    typst
+    zotero
+
     # Development
     gh
     
@@ -210,6 +239,21 @@ in
 
   # XDG configuration
   xdg.enable = true;
+
+
+  systemd.user.services.udiskie = {
+    Unit = {
+      Description = "Automount USB drives with udiskie";
+      After = [ "udisks2.service" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.udiskie}/bin/udiskie --no-tray --notify";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
 
   # GTK theme
   gtk = {
