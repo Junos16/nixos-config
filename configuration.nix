@@ -71,7 +71,7 @@
   users.users.hriddhit = {
     isNormalUser = true;
     description = "Hriddhit Datta";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "storage" "plugdev" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -178,8 +178,22 @@
   # };
 
   # Core system services
-  services.dbus.enable = true;
-  services.udisks2.enable = true;
+  services = {
+    dbus.enable = true;
+    udisks2.enable = true;
+    udev = {
+      enable = true;
+      extraRules = ''  
+        # Auto-mount USB drives
+        KERNEL=="sd[a-z]*", SUBSYSTEMS=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemd-run --property=Type=oneshot --property=RemainAfterExit=yes --property=ExecStop='${pkgs.util-linux}/bin/umount /mnt/%k' ${pkgs.util-linux}/bin/mkdir -p /mnt/%k && ${pkgs.util-linux}/bin/mount /dev/%k /mnt/%k"
+  
+        # Auto-unmount USB drives on removal
+        KERNEL=="sd[a-z]*", SUBSYSTEMS=="usb", ACTION=="remove", RUN+="${pkgs.systemd}/bin/systemd-run --property=Type=oneshot ${pkgs.util-linux}/bin/umount /mnt/%k && ${pkgs.util-linux}/bin/rmdir /mnt/%k"
+      '';
+    };
+    devmon.enable = true;
+    gvfs.enable = true;
+  };
 
   # Polkit authentication agent
   security.polkit.enable = true;
@@ -208,7 +222,8 @@
     curl
     lshw
     home-manager
-    # greetd.tuigreet
+    usbutils
+    util-linux
     polkit_gnome
     imagemagick
     ntfs3g

@@ -98,8 +98,10 @@ in
     syntaxHighlighting.enable = true;
     
     shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
+      ls = "eza";
+      tree = "eza --tree";
+      ll = "eza -l";
+      la = "eza -la";
       rebuild = "sudo nixos-rebuild switch --flake .#hriddhit";
       update = "nix flake update";
       vim = "nvim";
@@ -107,6 +109,8 @@ in
       tm = "tmux";
       ta = "tmux attach";
       tl = "tmux list-sessions";
+      lsusb = "lsusb";
+      lsmnt = "findmnt";
     };
 
     initExtra = ''
@@ -155,20 +159,17 @@ in
   # Essential packages
   home.packages = with pkgs; [
     # System utilities
-    htop
     btop
     neofetch
-    tree
     unzip
     wget
     curl
     ripgrep
-    fd
     bat
     eza
     
     # File manager
-    stable.xfce.thunar
+    stable.yazi
     
     # Media
     stable.mpv

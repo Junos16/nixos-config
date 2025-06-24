@@ -87,7 +87,7 @@ in
         "$mod, Q, exec, alacritty"
         "$mod, C, killactive"
         "$mod, M, exit"
-        "$mod, E, exec, thunar"
+        "$mod, E, exec, alacritty -e yazi"
         "$mod, V, togglefloating"
         "$mod, R, exec, wofi --show drun"
         "$mod, P, pseudo"
@@ -155,7 +155,6 @@ in
       # Window rules for transparency
       windowrulev2 = [
         "opacity 0.85 0.85,class:^(Alacritty)$"
-        "opacity 0.90 0.90,class:^(thunar)$"
         "opacity 0.95 0.95,class:^(firefox)$"
       ];
     };
