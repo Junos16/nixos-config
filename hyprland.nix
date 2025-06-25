@@ -19,15 +19,25 @@ in
       env = [
         "CLUTTER_BACKEND,wayland"
         "GDK_QPA_PLATFORM,wayland;xcb"
-	      "SDL_VIDEODRIVER,wayland"
-	      "XDG_SESSION_TYPE,wayland"
+        "SDL_VIDEODRIVER,wayland"
+        "XDG_SESSION_TYPE,wayland"
       ];
 
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        touchpad.natural_scroll = false;
+        # Fixed touchpad configuration for proper selection behavior
+        touchpad = {
+          natural_scroll = true;  # Changed to true for reversed scroll
+          disable_while_typing = true;
+          tap-to-click = true;
+          drag_lock = true;  # Prevents continuous selection after release
+          tap-and-drag = true;
+        };
+        # Mouse configuration for consistent behavior
+        accel_profile = "flat";
         sensitivity = 0;
+        force_no_accel = true;
       };
       
       general = {
@@ -51,12 +61,12 @@ in
         };
      	
         shadow = {
-    	    enabled = true;
-	        range = 20;
-    	    render_power = 3;
-    	    color = "rgba(00d4ff40)";
-    	    color_inactive = "rgba(0a0e1a40)";
-    	  };
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          color = "rgba(00d4ff40)";
+          color_inactive = "rgba(0a0e1a40)";
+        };
       };
       
       animations = {
@@ -137,6 +147,9 @@ in
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        
+        # Clipboard management
+        "$mod, clipboard, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
       ];
       
       bindm = [
@@ -148,15 +161,23 @@ in
         "waybar"
         "hyprpaper"
         "dunst"
-	      "wl-paste --watch cliphist store"
-	      # "sleep 2 && waybar"
+        "wl-paste --watch cliphist store"
       ];
       
-      # Window rules for transparency
+      # Window rules for transparency and clipboard behavior
       windowrulev2 = [
         "opacity 0.85 0.85,class:^(Alacritty)$"
         "opacity 0.95 0.95,class:^(firefox)$"
+        "pseudo, class:^(xdg-desktop-portal-gtk)$"
       ];
+      
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        mouse_move_enables_dpms = true;
+        enable_swallow = true;
+        swallow_regex = "^(Alacritty|kitty|termite)$";
+      };
     };
   };
 }

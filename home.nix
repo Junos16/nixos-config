@@ -135,14 +135,14 @@ in
 
     initExtra = ''
       if [[ -n "$WAYLAND_DISPLAY" ]]; then
-        alias phcopy='wl-copy'
-      	alias pbpaste='wl-paste'
+        alias pbcopy='wl-copy -- type text/plain'
+      	alias pbpaste='wl-paste --no-newline'
 
 	      autoload -Uz bracketed-paste-magic
 	      zle -N bracketed-paste bracketed-paste-magic
 
 	      paste-from-clipboard() {
-	        local content=$(wl-paste 2>/dev/null)
+	        local content=$(wl-paste --no-newline 2>/dev/null)
 	        if [[ -n "$content" ]]; then
 	          LBUFFER="$LBUFFER$content"
 	        fi
@@ -150,6 +150,24 @@ in
 
 	      zle -N paste-from-clipboard
 	      bindkey '^V' paste-from-clipboard
+
+        copy-to-clipboard() {
+          if [[ -n "$BUFFER" ]]; then
+            echo -n "$BUFFER" | wl-copy
+          fi
+        }
+
+        zle -N copy-to-clipboard
+        bindkey '^C' copy-to-clipboard  
+        
+        copy-selection() {
+          if [[ -n "$CUTBUFFER" ]]; then
+            echo -n "$CUTBUFFER" | wl-copy
+          fi
+        }
+
+        zle -N copy-selection
+        bindkey '^X^C' copy-selection  
       fi
     '';  
     
@@ -219,9 +237,9 @@ in
     grim
     slurp
     wl-clipboard
-    clipman
     cliphist
-    waybar
+    waybar  
+    bibata-cursors
     
     # Communication
     discord
@@ -274,4 +292,14 @@ in
     platformTheme.name = "adwaita";
     style.name = "adwaita-dark";
   };
+
+  # Cursor
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = false;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+  };
+
 }
