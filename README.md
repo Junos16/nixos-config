@@ -15,22 +15,18 @@ Device Specifications:
 # Todo
 
 ## Fundamentals
-- Bluetooth connectivity
 - USB Networking
+- Handle low battery, standby, etc.
 - Cli/TUI to manage things like network, bluetooth, printers, battery, etc.
 - Printer connectivity (epson software)
 
 ## Ricing
-- Add missing fonts and configs for agnoster oh my zsh theme
 - Improve how waybar looks
 - Switch to stylix for easy theme switching
 - Rice SDDM and remove the terminal login timing
 
 ## General Use
 - Nixvim (Hotkeys for productivity, accessibility and features on par with nvchad)
-- LibreOffice
-- Spotify
-- Telegram
 - Whatsapp
 - Fix TMUX functionality
 - Packages for ebook formats, for ebook management, etc.
