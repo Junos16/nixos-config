@@ -26,15 +26,13 @@ in
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        # Fixed touchpad configuration for proper selection behavior
         touchpad = {
-          natural_scroll = true;  # Changed to true for reversed scroll
+          natural_scroll = true; 
           disable_while_typing = true;
           tap-to-click = true;
-          drag_lock = true;  # Prevents continuous selection after release
+          drag_lock = true;  
           tap-and-drag = true;
         };
-        # Mouse configuration for consistent behavior
         accel_profile = "flat";
         sensitivity = 0;
         force_no_accel = true;
@@ -104,6 +102,8 @@ in
         "$mod, J, togglesplit"
         "$mod, F, fullscreen"
         "$mod, T, exec, alacritty -e tmux"
+        "$mod, B, exec, alacritty -e bluetui"
+        "$mod, A, exec, alacritty -e pulsemixer"
         
         # Focus
         "$mod, left, movefocus, l"

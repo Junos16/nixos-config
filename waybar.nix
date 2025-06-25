@@ -21,7 +21,7 @@ in
       mainBar = {
         layer = "top";
         position = "top";
-        height = 40;  # Increased height to accommodate icons properly
+        height = 40;  
         spacing = 6;
         margin-top = 4;
         margin-left = 8;
@@ -29,7 +29,7 @@ in
         
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ "clock" ];
-        modules-right = [ "wireplumber" "network" "battery" "tray" ];
+        modules-right = [ "wireplumber" "network" "battery" "tray" "bluetooth" ];
         
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -51,7 +51,7 @@ in
             "default" = "";
           };
           persistent-workspaces = {
-            "*" = 5; # Shows 5 workspaces by default
+            "*" = 5; 
           };
         };
         
@@ -128,7 +128,18 @@ in
           format-icons = ["" "" ""];
           tooltip-format = "Volume: {volume}%";
         };
-        
+
+        bluetooth = {
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          on-click = "bluetui";
+        };
+
         tray = {
           icon-size = 16;
           spacing = 8;

@@ -173,7 +173,7 @@ in
     
     oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
+      theme = "sorin";
       plugins = [ "git" "sudo" "z" "tmux" ];
     };
   };
@@ -206,13 +206,16 @@ in
     bat
     eza
     udiskie
+    bluetui
+    pulsemixer
     
     # File manager
     yazi
     
     # Media
     mpv
-    pavucontrol
+    feh
+    spotify
 
     # Documents/Academic
     zathura
@@ -221,15 +224,21 @@ in
     texliveFull
     typst
     zotero
+    libreoffice
 
     # Development
     gh
-    
-    # Fonts - Nerd Fonts collection
+    nodejs
+    python3
+
+    # Fonts 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     nerd-fonts.hack
     nerd-fonts.sauce-code-pro
+    nerd-fonts.symbols-only
+    powerline-fonts
+    font-awesome
     #(nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "Hack" "SourceCodePro" ]; })
     
     # Hyprland ecosystem
@@ -243,7 +252,8 @@ in
     
     # Communication
     discord
-    
+    telegram-desktop
+
     # Additional aesthetic tools
     cmatrix
     pipes-rs

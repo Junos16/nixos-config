@@ -71,7 +71,15 @@
   users.users.hriddhit = {
     isNormalUser = true;
     description = "Hriddhit Datta";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "storage" "plugdev" ];
+    extraGroups = [
+      "networkmanager" 
+      "wheel" 
+      "video" 
+      "audio" 
+      "storage" 
+      "plugdev" 
+      "bluetooth" 
+    ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -125,6 +133,18 @@
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };  
+  };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
   };
 
   services.displayManager.sddm = {
@@ -218,6 +238,8 @@
     imagemagick
     ntfs3g
     libnotify
+    bluez
+    bluez-tools
     # systemd
     # dbus
   ];
